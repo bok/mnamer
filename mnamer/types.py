@@ -29,6 +29,12 @@ class ProviderType(Enum):
     OMDB = "omdb"
 
 
+class RelocateType(Enum):
+    DEFAULT = "copy"
+    HARDLINK = "hard"
+    SYMBOLICLINK = "sym"
+
+
 class SettingType(Enum):
     DIRECTIVE = "directive"
     PARAMETER = "parameter"

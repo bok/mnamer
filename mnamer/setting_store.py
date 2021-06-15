@@ -1,7 +1,7 @@
 import dataclasses
 import json
 from pathlib import Path
-from typing import Any, Callable
+from typing import Any, Callable, Optional, Union
 
 from mnamer.argument import ArgLoader
 from mnamer.const import SUBTITLE_CONTAINERS
@@ -9,7 +9,7 @@ from mnamer.exceptions import MnamerException
 from mnamer.language import Language
 from mnamer.metadata import Metadata
 from mnamer.setting_spec import SettingSpec
-from mnamer.types import MediaType, ProviderType, SettingType
+from mnamer.types import MediaType, ProviderType, SettingType, RelocateType
 from mnamer.utils import crawl_out, json_loads, normalize_containers
 
 
@@ -216,6 +216,16 @@ class SettingStore:
             group=SettingType.PARAMETER,
             help="--episode-format: set episode renaming format specification",
         ).as_dict(),
+    )
+    relocation_mode: Optional[RelocateType] = dataclasses.field(
+        default=RelocateType.DEFAULT.value,
+        metadata=SettingSpec(
+            dest="relocation_mode",
+            choices=[ix.name for ix in RelocateType],
+            flags=["--link"],
+            group=SettingType.PARAMETER,
+            help=f"--link={'|'.join([ix.value for ix in RelocateType])}: when given, {'|'.join([ix.value for ix in RelocateType])} link instead of move files",
+        )(),
     )
 
     # directive attributes -----------------------------------------------------
