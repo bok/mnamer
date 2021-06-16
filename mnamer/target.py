@@ -3,7 +3,7 @@ from __future__ import annotations
 import datetime as dt
 from os import path, symlink, link
 from pathlib import Path
-from shutil import move, copy2
+from shutil import move, copy, copy2
 from typing import Any, ClassVar, Type
 
 from guessit import guessit  # type: ignore
@@ -45,7 +45,8 @@ class Target:
         RelocateType.DEFAULT.value: move,
         RelocateType.HARDLINK.value: link,
         RelocateType.SYMBOLICLINK.value: symlink,
-        RelocateType.COPY.value: copy2,
+        RelocateType.COPY2.value: copy2,
+        RelocateType.COPY.value: copy,
     }
 
     def __init__(self, file_path: Path, settings: SettingStore | None = None):
