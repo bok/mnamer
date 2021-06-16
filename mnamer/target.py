@@ -111,8 +111,13 @@ class Target:
             dir_head = Path(dir_head_)
         else:
             dir_head = self.source.parent
+
         file_path = format(self.metadata, self._settings.formatting_for(self.metadata))
         dir_tail, filename = path.split(Path(file_path))
+
+        # Required to sanitize paths that have been inserted into --episode-format
+        dir_tail = Path(*[str_sanitize(px) for px in Path(dir_tail).parts])
+
         filename = filename_replace(filename, self._settings.replace_after)
         if self._settings.scene:
             filename = str_scenify(filename)
