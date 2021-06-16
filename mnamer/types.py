@@ -31,8 +31,8 @@ class ProviderType(Enum):
 
 class RelocateType(Enum):
     DEFAULT = "move"
-    HARDLINK = "hard"
-    SYMBOLICLINK = "sym"
+    HARDLINK = "hardlink"
+    SYMBOLICLINK = "symlink"
     COPY = "copy"
     COPY2 = "copy-with-metadata"
 
