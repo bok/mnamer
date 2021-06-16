@@ -30,9 +30,10 @@ class ProviderType(Enum):
 
 
 class RelocateType(Enum):
-    DEFAULT = "copy"
+    DEFAULT = "move"
     HARDLINK = "hard"
     SYMBOLICLINK = "sym"
+    COPY = "copy"
 
 
 class SettingType(Enum):
