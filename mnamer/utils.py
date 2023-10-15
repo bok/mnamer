@@ -58,7 +58,10 @@ def crawl_out(filename: str | Path | PurePath) -> Path | None:
             return target
         working_dir = parent_dir
     target = Path.home() / filename
-    return target if target.exists() else None
+    try:
+        return target if target.exists() else None
+    except PermissionError:
+        return None
 
 
 def filename_replace(filename: str, replacements: dict[str, str]) -> str:
